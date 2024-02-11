@@ -7,14 +7,16 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import rocks.mattjackson.controllers.GenericController;
+import rocks.mattjackson.Router;
 
 public class ThreadedAction {
 	
 	private Executor executor;
+	private Router router;
 	
 	public ThreadedAction(int threadPoolSize) {
 		executor = Executors.newFixedThreadPool(threadPoolSize);
+		router = Router.build();
 	}
 	
 	public void act(final Socket socket) {
@@ -31,11 +33,7 @@ public class ThreadedAction {
 			) {
 				Request request = new Request(in);
 				
-				System.out.println(request.getHttpMethod()+" - "+request.getPath());
-				
-				Response response = new GenericController().handle(null);
-				System.out.println("Done reading from client");
-				System.out.println("Returning the value "+response);
+				Response response = router.route(request);
 				out.println(response.toString());
 			} catch (IOException e) {
 				System.out.println("Unable to run ThreadedAction "+e);

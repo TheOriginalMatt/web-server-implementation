@@ -21,7 +21,6 @@ public class App
 			while(true) {
 				Socket socket = serverSocket.accept();
 				actor.act(socket);
-				System.out.println("looping");
 			}
 		} catch (IOException e) {
 			System.out.println("Encountered an error: "+e.getMessage());
