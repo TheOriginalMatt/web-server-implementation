@@ -22,8 +22,6 @@ public class ThreadedAction {
 			sendToController(socket);
 			closeSocket(socket);
 		});
-//		sendToController(socket);
-//		closeSocket(socket);
 	}
 	
 	private void sendToController(Socket socket) {
@@ -31,18 +29,14 @@ public class ThreadedAction {
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			) {
-				while(true) {
-					String inLine = in.readLine();
-					if (inLine == null || inLine.isEmpty()) {
-						break;
-					}
-					System.out.println("From client: "+(inLine == null ? "<< null >>" : inLine));
-				}
+				Request request = new Request(in);
 				
-				String output = new GenericController().handle(null);
+				System.out.println(request.getHttpMethod()+" - "+request.getPath());
+				
+				Response response = new GenericController().handle(null);
 				System.out.println("Done reading from client");
-				System.out.println("Returning the value "+output);
-				out.println(output);
+				System.out.println("Returning the value "+response);
+				out.println(response.toString());
 			} catch (IOException e) {
 				System.out.println("Unable to run ThreadedAction "+e);
 			}
