@@ -9,6 +9,10 @@ public class Response {
 		this.body = body;
 	}
 	
+	public Response(int status, Render render) {
+		this(status, render.getBody());
+	}
+	
 	private String statusLine() {
 		return "HTTP/1.1 " + getStatus();
 	}
