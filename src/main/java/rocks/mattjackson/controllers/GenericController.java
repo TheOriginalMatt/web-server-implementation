@@ -18,7 +18,7 @@ public class GenericController extends Controller {
 	@Override
 	public Response handle(Request request) {
 		TemplateDataTest data = new TemplateDataTest();
-		data.setUser("you're one cooooooool developer");
+		data.setUser("dev! You even know docker! You're so hip!");
 		Response response = new Response(200, new Render("index.ftlh", data, request));
 		response.addCookie("user-is-cool", "maybe, check back later");
 		return response;
