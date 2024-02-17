@@ -1,7 +1,7 @@
 package rocks.mattjackson.controllers;
 
 import rocks.mattjackson.Request;
-import rocks.mattjackson.Response;
+import rocks.mattjackson.response.Response;
 
 public class NotFoundController extends Controller {
 

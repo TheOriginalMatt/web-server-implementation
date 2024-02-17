@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import rocks.mattjackson.Router;
+import rocks.mattjackson.response.Response;
 
 public class ThreadedAction {
 	public Logger logger = LogManager.getLogger(ThreadedAction.class);
