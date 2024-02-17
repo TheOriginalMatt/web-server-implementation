@@ -24,10 +24,8 @@ $ mvn exec:java
 
 # To-Do
 
-## Done
-
 ## Not Started
-- Add a logging framework
+- Add config file
 - Save cookies too the browser
 - Read cookies from the browser
 - Configure to run in a docker container
@@ -36,3 +34,6 @@ $ mvn exec:java
 - Add JavaDoc to the build script
 - Add JUnit and Jacoco
 - Clean up where config files and views go in the target directory
+
+## Done
+- Add a logging framework

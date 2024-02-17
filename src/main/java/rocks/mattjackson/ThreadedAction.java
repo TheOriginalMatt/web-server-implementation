@@ -15,47 +15,43 @@ import rocks.mattjackson.Router;
 
 public class ThreadedAction {
 	public Logger logger = LogManager.getLogger(ThreadedAction.class);
-	
+
 	private Executor executor;
 	private Router router;
-	
+
 	public ThreadedAction(int threadPoolSize) {
 		executor = Executors.newFixedThreadPool(threadPoolSize);
 		router = Router.build();
 	}
-	
+
 	public void act(final Socket socket) {
 		executor.execute(() -> {
-			System.out.println("I got a request!");
 			sendToController(socket);
 			closeSocket(socket);
 		});
 	}
-	
+
 	private void sendToController(Socket socket) {
-		try (
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			) {
-				Request request = new Request(in);
-				logRequest(request);
-				Response response = router.route(request);
-				out.println(response.toString());
-			} catch (IOException e) {
-				System.out.println("Unable to run ThreadedAction "+e);
-			}
+		try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
+			Request request = new Request(in);
+			logRequest(request);
+			Response response = router.route(request);
+			out.println(response.toString());
+		} catch (IOException e) {
+			logger.error("Unable to run ThreadedAction", e);
+		}
 	}
-	
+
 	private void closeSocket(Socket socket) {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			System.out.println("Unable to close socket "+e);
+			logger.error("Unable to close the socket", e);
 		}
 	}
-	
+
 	private void logRequest(Request request) {
-		System.out.println("I'm about to log!!! UwU");
-		logger.info("Handling request");
+		logger.debug("RQST: "+request.getHttpMethod()+" | "+request.getPath());
 	}
 }

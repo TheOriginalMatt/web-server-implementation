@@ -17,3 +17,9 @@
 2024-02-17 10:17:23.021 [rocks.mattjackson.App.main()] WARN  rocks.mattjackson.ThreadedAction - I'm logging at the warn level
 2024-02-17 10:17:23.022 [rocks.mattjackson.App.main()] INFO  rocks.mattjackson.ThreadedAction - I'm logging at the info level
 2024-02-17 10:17:23.022 [rocks.mattjackson.App.main()] DEBUG rocks.mattjackson.ThreadedAction - I'm logging at the debug level
+2024-02-17 10:18:22.639 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - Configuration File Defined To Be :: null
+2024-02-17 10:18:22.640 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - I'm logging at the fatal level
+2024-02-17 10:18:22.641 [rocks.mattjackson.App.main()] ERROR rocks.mattjackson.ThreadedAction - I'm logging at the error level
+2024-02-17 10:18:22.641 [rocks.mattjackson.App.main()] WARN  rocks.mattjackson.ThreadedAction - I'm logging at the warn level
+2024-02-17 10:18:22.641 [rocks.mattjackson.App.main()] INFO  rocks.mattjackson.ThreadedAction - I'm logging at the info level
+2024-02-17 10:18:22.641 [rocks.mattjackson.App.main()] DEBUG rocks.mattjackson.ThreadedAction - I'm logging at the debug level
