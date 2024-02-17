@@ -25,7 +25,6 @@ $ mvn exec:java
 # To-Do
 
 ## Not Started
-- Add config file
 - Save cookies too the browser
 - Read cookies from the browser
 - Configure to run in a docker container
@@ -37,3 +36,4 @@ $ mvn exec:java
 
 ## Done
 - Add a logging framework
+- Add config file
