@@ -1,7 +1,8 @@
 package rocks.mattjackson.response;
 
 public class Header {
-	private static final String HEADER_KEY_VALUE_DELIMITER = ": ";
+	public static final String HEADER_KEY_VALUE_DELIMITER = ": ";
+	public static final String HEADER_VALUE_DELIMITER = "; ";
 	
 	private String key;
 	private String value;

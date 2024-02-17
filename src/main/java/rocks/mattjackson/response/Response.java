@@ -9,15 +9,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import rocks.mattjackson.Render;
+import rocks.mattjackson.util.HasHeaders;
 
 import java.util.Optional;
 
-public class Response {
+public class Response extends HasHeaders{
 	private static final String NEW_LINE = "\n";
 	
 	private int status;
 	private String body;
-	private List<Header> headers;
 	
 	public Response(int status, String body) {
 		this.status = status;
@@ -35,7 +35,7 @@ public class Response {
 	
 	private String headerLines() {
 		StringBuilder builder = new StringBuilder();
-		for (Header header : headers) {
+		for (Header header : getHeaders()) {
 			builder.append(header.toString()).append(NEW_LINE);
 		}
 		return builder.toString();
@@ -55,21 +55,5 @@ public class Response {
 	
 	public String getBody() {
 		return this.body;
-	}
-
-	public List<Header> getHeaders() {
-		return headers;
-	}
-
-	public void setHeaders(List<Header> headers) {
-		this.headers = headers;
-	}
-	
-	public void addHeader(String key, String value) {
-		getHeaders().add(new Header(key, value));
-	}
-	
-	public void addCookie(String key, String value) {
-		getHeaders().add(new Cookie(key, value));
 	}
 }

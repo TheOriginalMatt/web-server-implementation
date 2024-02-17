@@ -25,10 +25,9 @@ $ mvn exec:java
 # To-Do
 
 ## Not Started
-- Save cookies too the browser
-- Read cookies from the browser
 - Configure to run in a docker container
 - Hook up to a DB (within the docker container)
+- Handle http methods other than GET
 - Setup a front end template language, probably vue.js
 - Add JavaDoc to the build script
 - Add JUnit and Jacoco
@@ -37,3 +36,5 @@ $ mvn exec:java
 ## Done
 - Add a logging framework
 - Add config file
+- Save cookies to the browser
+- Read cookies from the browser

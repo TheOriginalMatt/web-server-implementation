@@ -3,12 +3,12 @@ package rocks.mattjackson.response;
 import java.util.Date;
 
 public class Cookie extends Header {
-	private static final String COOKIE_KEY_VALUE_DELIMITER = "=";
-	private static final String COOKIE_HEADER_KEY = "Set-Cookie";
-	private static final String COOKIE_SETTINGS_DELIMITER = "; ";
-	private static final String COOKIE_SECURE_SETTINGS = 
+	public static final String COOKIE_KEY_VALUE_DELIMITER = "=";
+	public static final String COOKIE_RESPONSE_HEADER_KEY = "Set-Cookie";
+	public static final String COOKIE_REQUEST_HEADER_KEY = "Cookie";
+	public static final String COOKIE_SECURE_SETTINGS = 
 			"Secure"+
-			COOKIE_SETTINGS_DELIMITER
+			Header.HEADER_VALUE_DELIMITER
 			+"HttpOnly";
 	
 	private Date experation;
@@ -44,11 +44,11 @@ public class Cookie extends Header {
 	public String toString() {
 		String headerValue = getKey()+COOKIE_KEY_VALUE_DELIMITER+getValue();
 		if (getExperation() != null) {
-			headerValue += COOKIE_SETTINGS_DELIMITER + getExperation().toString();
+			headerValue += Header.HEADER_VALUE_DELIMITER + getExperation().toString();
 		}
 		if (isSecure()) { 
-			headerValue += COOKIE_SETTINGS_DELIMITER + COOKIE_SECURE_SETTINGS;
+			headerValue += Header.HEADER_VALUE_DELIMITER  + COOKIE_SECURE_SETTINGS;
 		}
-		return new Header(COOKIE_HEADER_KEY, headerValue).toString();
+		return new Header(COOKIE_RESPONSE_HEADER_KEY, headerValue).toString();
 	}
 }
