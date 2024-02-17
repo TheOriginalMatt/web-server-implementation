@@ -6,6 +6,22 @@ The main goal here is to learn more in-depth about web development. Yeah, I can 
 my job, but what's it mean that a web server takes in a string and returns a string? How does it work at the very bottom
 level.
 
+# Running
+
+You absolute madman.
+
+It's a maven project, so compiling can be done via
+
+```
+$ mvn clean compile
+```
+
+and running can be done via
+
+```
+$ mvn exec:java
+```
+
 # To-Do
 
 ## Done
