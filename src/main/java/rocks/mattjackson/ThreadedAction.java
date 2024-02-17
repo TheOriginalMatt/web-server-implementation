@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
-import rocks.mattjackson.Router;
 import rocks.mattjackson.request.Request;
 import rocks.mattjackson.response.Response;
 import rocks.mattjackson.response.render.RenderConfigs;
