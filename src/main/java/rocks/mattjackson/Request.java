@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Request {
-	
 	private final String method;
 	private final String path;
 	private final Map<String, String> headers;

@@ -35,3 +35,4 @@ $ mvn exec:java
 - Setup a front end template language, probably vue.js
 - Add JavaDoc to the build script
 - Add JUnit and Jacoco
+- Clean up where config files and views go in the target directory

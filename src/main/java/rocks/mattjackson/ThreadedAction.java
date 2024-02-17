@@ -7,9 +7,14 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import rocks.mattjackson.Router;
 
 public class ThreadedAction {
+	public Logger logger = LogManager.getLogger(ThreadedAction.class);
 	
 	private Executor executor;
 	private Router router;
@@ -21,6 +26,7 @@ public class ThreadedAction {
 	
 	public void act(final Socket socket) {
 		executor.execute(() -> {
+			System.out.println("I got a request!");
 			sendToController(socket);
 			closeSocket(socket);
 		});
@@ -32,7 +38,7 @@ public class ThreadedAction {
 				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			) {
 				Request request = new Request(in);
-				
+				logRequest(request);
 				Response response = router.route(request);
 				out.println(response.toString());
 			} catch (IOException e) {
@@ -46,5 +52,10 @@ public class ThreadedAction {
 		} catch (IOException e) {
 			System.out.println("Unable to close socket "+e);
 		}
+	}
+	
+	private void logRequest(Request request) {
+		System.out.println("I'm about to log!!! UwU");
+		logger.info("Handling request");
 	}
 }

@@ -1,0 +1,19 @@
+2024-02-17 10:02:04.776 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - Configuration File Defined To Be :: File:///home/matt/Documents/web-server-implementation/log4j2.xml
+2024-02-17 10:03:46.056 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - Configuration File Defined To Be :: File:///home/matt/Documents/web-server-implementation/log4j2.xml
+2024-02-17 10:03:46.057 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - I'm logging at the fatal level
+2024-02-17 10:03:46.057 [rocks.mattjackson.App.main()] ERROR rocks.mattjackson.ThreadedAction - I'm logging at the error level
+2024-02-17 10:03:46.058 [rocks.mattjackson.App.main()] WARN  rocks.mattjackson.ThreadedAction - I'm logging at the warn level
+2024-02-17 10:03:46.058 [rocks.mattjackson.App.main()] INFO  rocks.mattjackson.ThreadedAction - I'm logging at the info level
+2024-02-17 10:03:46.058 [rocks.mattjackson.App.main()] DEBUG rocks.mattjackson.ThreadedAction - I'm logging at the debug level
+2024-02-17 10:06:27.999 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - Configuration File Defined To Be :: File:./log4j2.xml
+2024-02-17 10:06:28.000 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - I'm logging at the fatal level
+2024-02-17 10:06:28.001 [rocks.mattjackson.App.main()] ERROR rocks.mattjackson.ThreadedAction - I'm logging at the error level
+2024-02-17 10:06:28.001 [rocks.mattjackson.App.main()] WARN  rocks.mattjackson.ThreadedAction - I'm logging at the warn level
+2024-02-17 10:06:28.001 [rocks.mattjackson.App.main()] INFO  rocks.mattjackson.ThreadedAction - I'm logging at the info level
+2024-02-17 10:06:28.001 [rocks.mattjackson.App.main()] DEBUG rocks.mattjackson.ThreadedAction - I'm logging at the debug level
+2024-02-17 10:17:23.020 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - Configuration File Defined To Be :: File:./target/classes/log4j2.xml
+2024-02-17 10:17:23.021 [rocks.mattjackson.App.main()] FATAL rocks.mattjackson.ThreadedAction - I'm logging at the fatal level
+2024-02-17 10:17:23.021 [rocks.mattjackson.App.main()] ERROR rocks.mattjackson.ThreadedAction - I'm logging at the error level
+2024-02-17 10:17:23.021 [rocks.mattjackson.App.main()] WARN  rocks.mattjackson.ThreadedAction - I'm logging at the warn level
+2024-02-17 10:17:23.022 [rocks.mattjackson.App.main()] INFO  rocks.mattjackson.ThreadedAction - I'm logging at the info level
+2024-02-17 10:17:23.022 [rocks.mattjackson.App.main()] DEBUG rocks.mattjackson.ThreadedAction - I'm logging at the debug level
