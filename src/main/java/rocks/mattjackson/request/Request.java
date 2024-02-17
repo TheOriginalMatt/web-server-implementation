@@ -10,14 +10,17 @@ import org.apache.logging.log4j.Logger;
 
 import rocks.mattjackson.response.Cookie;
 import rocks.mattjackson.response.Header;
+import rocks.mattjackson.response.render.RenderConfigs;
 import rocks.mattjackson.util.HasHeaders;
 
 public class Request extends HasHeaders {
 	private final String method;
 	private final String path;
+	private final RenderConfigs renderConfigs;
 	
-	public Request(BufferedReader requestReader) throws IOException {
+	public Request(BufferedReader requestReader, RenderConfigs renderConfigs) throws IOException {
 		super();
+		this.renderConfigs = renderConfigs;
 		String firstLine = requestReader.readLine();
 		String[] split = firstLine.split(" ");
 		method = split[0];
@@ -37,5 +40,9 @@ public class Request extends HasHeaders {
 
 	public String getPath() {
 		return path;
+	}
+	
+	public RenderConfigs getRenderConfigs() {
+		return this.renderConfigs;
 	}
 }

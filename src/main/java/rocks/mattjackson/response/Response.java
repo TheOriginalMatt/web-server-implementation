@@ -1,5 +1,7 @@
 package rocks.mattjackson.response;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,25 +10,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import rocks.mattjackson.Render;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import rocks.mattjackson.ThreadedAction;
+import rocks.mattjackson.response.render.Render;
 import rocks.mattjackson.util.HasHeaders;
 
 import java.util.Optional;
 
 public class Response extends HasHeaders{
+	public Logger logger = LogManager.getLogger(ThreadedAction.class);
 	private static final String NEW_LINE = "\n";
 	
 	private int status;
+	private Render render;
 	private String body;
 	
-	public Response(int status, String body) {
-		this.status = status;
-		this.body = body;
+	private Response(int status) {
 		setHeaders(new LinkedList<>());
+		this.status = status;
+	}
+	
+	public Response(int status, String body) {
+		this(status);
+		this.body = body;
+		
 	}
 	
 	public Response(int status, Render render) {
-		this(status, render.getBody());
+		this(status);
+		this.render = render;
 	}
 	
 	private String statusLine() {
@@ -42,11 +56,14 @@ public class Response extends HasHeaders{
 	}
 	
 	public String toString() {
+		 return getBody();
+	}
+	
+	public String getHeader() {
 		return 
 				statusLine() + NEW_LINE +
 				headerLines() + NEW_LINE+
-				NEW_LINE + 
-				getBody();
+				NEW_LINE;
 	}
 	
 	public int getStatus() {
@@ -55,5 +72,19 @@ public class Response extends HasHeaders{
 	
 	public String getBody() {
 		return this.body;
+	}
+	
+	public void sendToClient(Writer writer) {
+		try {
+			writer.append(getHeader());
+			if (body != null) {
+				writer.append(body);
+			} else {
+				render.render(writer);
+			}
+		} catch (IOException e) {
+			logger.error("Unable to return a response to the client", e);
+		}
+		
 	}
 }
