@@ -17,3 +17,5 @@ level.
 - Configure to run in a docker container
 - Hook up to a DB (within the docker container)
 - Setup a front end template language, probably vue.js
+- Add JavaDoc to the build script
+- Add JUnit and Jacoco
