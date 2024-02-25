@@ -20,19 +20,32 @@ import rocks.mattjackson.response.Response;
 import rocks.mattjackson.response.render.RenderConfigs;
 import rocks.mattjackson.util.Configs;
 
+/**
+ * The multi-threaded intermediary between the HTTP request and the POJOs. Handles the boiler-plate setup required on
+ * each request, passes it off to the {@link Router}, and handles converting the response into an HTTP response for the
+ * client.
+ */
 public class ThreadedAction {
-	public Logger logger = LogManager.getLogger();
+	private Logger logger = LogManager.getLogger();
 
 	private Executor executor;
 	private Router router;
 	private Configuration freeMarkerConfigs;
 
+	/**
+	 * @param threadPoolSize The number of threads to use in handling requests simultaneously.
+	 */
 	public ThreadedAction(int threadPoolSize) {
 		freeMarkerConfigs = generateFreeMarkerConfigs();
 		executor = Executors.newFixedThreadPool(threadPoolSize);
-		router = Router.build();
+		router = new Router();
 	}
 
+	/**
+	 * The method that handles each request from the user.
+	 * 
+	 * @param socket The socket containing the request and the output stream to respond to the request.
+	 */
 	public void act(final Socket socket) {
 		executor.execute(() -> {
 			sendToController(socket);
@@ -41,8 +54,10 @@ public class ThreadedAction {
 	}
 
 	private void sendToController(Socket socket) {
-		try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
+		try (
+				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			) {
 			RenderConfigs configs = new RenderConfigs(freeMarkerConfigs);
 			Request request = new Request(in, configs);
 			logRequest(request);
@@ -65,6 +80,9 @@ public class ThreadedAction {
 		logger.debug("RQST: "+request.getHttpMethod()+" | "+request.getPath());
 	}
 	
+	/**
+	 * @return The configuration needed by FreeMarker.
+	 */
 	public static Configuration generateFreeMarkerConfigs() {
 		// This is stolen from https://freemarker.apache.org/docs/pgui_quickstart_createconfiguration.html
 		

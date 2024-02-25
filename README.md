@@ -15,6 +15,7 @@ Templating tool [FreeMarker by Apache](https://freemarker.apache.org/)
 You absolute madman.
 
 Build and run the docker container (from within the root file in this project):
+
 ```
 $ sudo docker build --tag java-docker . &&  sudo docker run --publish 8080:8080 java-docker
 ```
@@ -22,7 +23,6 @@ $ sudo docker build --tag java-docker . &&  sudo docker run --publish 8080:8080 
 # To-Do
 
 ## Not Started
-- Configure to run in a docker container
 - Hook up to a DB (within the docker container)
 - Handle http methods other than GET
 - Add JavaDoc to the build script
@@ -35,3 +35,4 @@ $ sudo docker build --tag java-docker . &&  sudo docker run --publish 8080:8080 
 - Save cookies to the browser
 - Read cookies from the browser
 - Setup a front end template language, probably vue.js
+- Configure to run in a docker container

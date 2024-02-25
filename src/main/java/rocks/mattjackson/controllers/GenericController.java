@@ -14,7 +14,10 @@ import rocks.mattjackson.response.render.Render;
 import rocks.mattjackson.response.render.RenderConfigs;
 import rocks.mattjackson.request.Request;
 
-public class GenericController extends Controller {
+/**
+ * A test example of how a controller would actually handle a response and return sever-rendered HTML.
+ */
+public class GenericController implements Controller {
 	@Override
 	public Response handle(Request request) {
 		TemplateDataTest data = new TemplateDataTest();
@@ -24,13 +27,22 @@ public class GenericController extends Controller {
 		return response;
 	}
 
+	/**
+	 * We can just pass any object into Render and the template can use it to be rendered!
+	 */
 	public static class TemplateDataTest {
 		private String user;
 
+		/**
+		 * @return the user
+		 */
 		public String getUser() {
 			return user;
 		}
 
+		/**
+		 * @param user the user
+		 */
 		public void setUser(String user) {
 			this.user = user;
 		}

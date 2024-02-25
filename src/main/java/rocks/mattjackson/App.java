@@ -10,15 +10,19 @@ import org.apache.logging.log4j.Logger;
 import rocks.mattjackson.util.Configs;
 
 /**
- * Hello world!
- *
+ * The application. Listens to for requests and gives them to a threaded actor to be handled.
  */
 public class App {
+	/**
+	 * Runs the web-server. Just passes on each request it gets.
+	 * 
+	 * @param args These arguments aren't used. Instead use {@link Configs}
+	 */
 	public static void main( String[] args ) {
-		int portNumber = Configs.serverConfigs().getInt("server.port");
+		int portNumber = Configs.serverConfigs().getInt("port");
 		Logger logger = LogManager.getLogger();
 		logger.debug("Server starting. Available at port "+portNumber);
-		ThreadedAction actor = new ThreadedAction(4);
+		ThreadedAction actor = new ThreadedAction(Configs.serverConfigs().getInt("requestHandlingThreads"));
 		try (
 			ServerSocket serverSocket = new ServerSocket(portNumber);
 		) {
